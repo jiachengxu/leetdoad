@@ -8,27 +8,29 @@ Fully customizable **Leet**code **d**ownl**oad**er and manager, which can downlo
 go get github.com/jiachengxu/leetdoad
 ```
 
+Alternatively, you can download the latest release from [release page](https://github.com/jiachengxu/leetdoad/releases).
+
 You can check the available flags by:
 
 ```bash
 $ leetdoad -h
 Usage of leetdoad:
   -config-file string
-    	Path of the leetdoad config file. (default ".leetdoad.yaml")
+    	Path of the leetdoad config file (default ".leetdoad.yaml")
   -cookie string
     	Cookie that used for scraping problems and solutions from Leetcode website, you can either pass it from here, or set LEETCODE_COOKIE env
   -debug
-    	Debug logs.
+    	Debug logs
+  -version
+    	Show the current leetdoad version
 ```
 
 Leetdoad uses a cookie to download your latest submissions from Leetcode, and cookie can be found in your browser when you visit Leetcode website. If you don't know how to find the cookie, Google is your friend.
-When you have your cookie in-place, you can either pass it via `-cookie` flag or set it in the `LEETCODE_COOKIE` environment variable.
+When you have your cookie in-place, you can either pass it via `-cookie` flag or set it to the `LEETCODE_COOKIE` environment variable.
 
 Leetdoad also requires a configuration file in YAML to organize your Leetcode submissions locally, you can either create a file, and pass it via `-config-file` flag or name it as `.leetdoad.yaml` in the folder, leetdoad will use it by default.
 
 ## Configuration
-
-Leetdoad uses a Cookie and configuration file in YAML to scrape your Leedcode solutions, and organize them:
 
 ```yaml
 # Languages defines the submissions you would like to download are written in which programming languages.

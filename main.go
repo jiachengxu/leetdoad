@@ -16,20 +16,17 @@ var (
 	version   = "dev"
 	commit    = ""
 	date      = ""
-	builtBy   = ""
 	goVersion = ""
 	website   = "https://github.com/jiachengxu/leetdoad"
 )
 
 func printVersion() {
-	fmt.Printf(`
-leetdoad version: %s
+	fmt.Printf(`leetdoad version: %s
 commit: %s
 built at: %s
-built by: %s
 go version: %s
 %s
-`, version, commit, date, builtBy, goVersion, website)
+`, version, commit, date, goVersion, website)
 }
 
 type flags struct {
@@ -41,9 +38,9 @@ type flags struct {
 
 func main() {
 	f := flags{}
-	flag.StringVar(&f.configFilePath, "config-file", ".leetdoad.yaml", "Path of the leetdoad config file.")
-	flag.StringVar(&f.cookie, "cookie", "", "cookie that used for scraping problems and solutions from Leetcode website, you can either pass it from here, or set LEETCODE_COOKIE env")
-	flag.BoolVar(&f.debug, "debug", false, "Debug logs.")
+	flag.StringVar(&f.configFilePath, "config-file", ".leetdoad.yaml", "Path of the leetdoad config file")
+	flag.StringVar(&f.cookie, "cookie", "", "Cookie that used for scraping problems and solutions from Leetcode website, you can either pass it from here, or set LEETCODE_COOKIE env")
+	flag.BoolVar(&f.debug, "debug", false, "Debug logs")
 	flag.BoolVar(&f.version, "version", false, "Show the current leetdoad version")
 	flag.Parse()
 	if f.version {
