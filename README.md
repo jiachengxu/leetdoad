@@ -37,10 +37,10 @@ Leetdoad uses a Cookie and configuration file in YAML to scrape your Leedcode so
 languages: [golang, java, cpp, python3]
 # Pattern is the naming pattern for your submission file path. It has to be compatible with go template.
 # Available Options:
-#   - .Difficulty. The difficulty of the question.
-#   - .Language. The language that the submission is written in.
-#   - .QuestionName. The question name.
-#   - .QuestionNumber The question number.
+#   - .Difficulty - The difficulty of the question.
+#   - .Language - The language that the submission is written in.
+#   - .QuestionName - The question name.
+#   - .QuestionNumber - The question number.
 # Note that you don't need to specify the extension of the submission file because that will be automatically added based on the
 # programming language that the submission is written in.
 # For example, with the following pattern, your go and java solutions of 1.Two Sum question will be saved as:
