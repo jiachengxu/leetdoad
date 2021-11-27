@@ -1,0 +1,2 @@
+languages: [golang, java, cpp, python3]
+pattern: "{{ .Language }}/{{ .QuestionNumber }}.{{ .QuestionName }}.{{ .Difficulty }}"
