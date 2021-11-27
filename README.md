@@ -51,6 +51,8 @@ pattern: "{{ .Language }}/{{ .QuestionNumber }}.{{ .QuestionName }}.{{ .Difficul
 ```
 
 ### Examples
+If you are interested in how I organize my Leetcode submissions with Leetdoad, please check [my leetcode solutions](https://github.com/jiachengxu/oj/tree/main/leetcode).
+
 Let's consider the following simple example, you have solved the following Leetcode questions:
 
 | QuestionNumber | QuestionName | Difficulty | Language |
