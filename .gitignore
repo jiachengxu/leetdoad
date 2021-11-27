@@ -1,4 +1,5 @@
-/vendor
+vendor
 leetdoad
 .idea
 .DS_Store
+dist

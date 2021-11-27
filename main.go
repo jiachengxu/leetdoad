@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -11,10 +12,31 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+var (
+	version   = "dev"
+	commit    = ""
+	date      = ""
+	builtBy   = ""
+	goVersion = ""
+	website   = "https://github.com/jiachengxu/leetdoad"
+)
+
+func printVersion() {
+	fmt.Printf(`
+leetdoad version: %s
+commit: %s
+built at: %s
+built by: %s
+go version: %s
+%s
+`, version, commit, date, builtBy, goVersion, website)
+}
+
 type flags struct {
 	configFilePath string
 	cookie         string
 	debug          bool
+	version        bool
 }
 
 func main() {
@@ -22,7 +44,12 @@ func main() {
 	flag.StringVar(&f.configFilePath, "config-file", ".leetdoad.yaml", "Path of the leetdoad config file.")
 	flag.StringVar(&f.cookie, "cookie", "", "cookie that used for scraping problems and solutions from Leetcode website, you can either pass it from here, or set LEETCODE_COOKIE env")
 	flag.BoolVar(&f.debug, "debug", false, "Debug logs.")
+	flag.BoolVar(&f.version, "version", false, "Show the current leetdoad version")
 	flag.Parse()
+	if f.version {
+		printVersion()
+		return
+	}
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
 	if f.debug {
 		zerolog.SetGlobalLevel(zerolog.DebugLevel)
