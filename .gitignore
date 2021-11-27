@@ -3,3 +3,5 @@ leetdoad
 .idea
 .DS_Store
 dist
+
+dist/
