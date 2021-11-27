@@ -42,3 +42,9 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+
+release:
+  github:
+    owner: jiachengxu
+    name: leetdoad
+  prerelease: true
