@@ -1,6 +1,6 @@
 # Leetdoad
 
-Fully customizable **Leet**code **d**ownl**oad**er, which can download and organize your Leetcode submissions in different ways, e.g., by language, difficulty, question, etc. 
+Fully customizable **Leet**code **d**ownl**oad**er and manager, which can download and organize your Leetcode submissions in different ways, e.g., by language, difficulty, question, etc. 
 
 ## Installation
 
