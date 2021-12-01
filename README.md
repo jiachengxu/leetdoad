@@ -2,6 +2,17 @@
 
 Fully customizable **Leet**code **d**ownl**oad**er and manager, which can download and organize your Leetcode submissions in different ways, e.g., by language, difficulty, question, etc. 
 
+- [Leetdoad](#leetdoad)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+  - [Examples](#examples)
+    - [Basic](#basic)
+    - [Organized by Questions](#organized-by-questions)
+    - [Organized by Difficulties](#organized-by-difficulties)
+    - [Organized by Languages](#organized-by-languages)
+    - [GitHub Actions](#github-actions)
+  - [Limitations](#limitations)
+
 ## Installation
 
 ```bash
@@ -52,8 +63,8 @@ languages: [golang, java, cpp, python3]
 pattern: "{{ .Language }}/{{ .QuestionNumber }}.{{ .QuestionName }}.{{ .Difficulty }}"
 ```
 
-### Examples
-If you are interested in how I organize my Leetcode submissions with Leetdoad, please check [my leetcode solutions](https://github.com/jiachengxu/oj/tree/main/leetcode).
+## Examples
+If you are interested in how I organize my Leetcode submissions with Leetdoad, please check [my leetcode solutions](https://github.com/jiachengxu/oj/tree/main/leetcode), and I also use [GitHub Actions](https://github.com/jiachengxu/oj/blob/main/.github/workflows/leetdoad.yaml) to periodically fetch latest submissions from Leetcode.
 
 Let's consider the following simple example, you have solved the following Leetcode questions:
 
@@ -62,7 +73,7 @@ Let's consider the following simple example, you have solved the following Leetc
 | 1 | Two Sum | easy | cpp, golang |
 | 2 | Add Two Numbers | medium | golang, java |
 
-#### Basic
+### Basic
 
 ```yaml
 language: ["*"]
@@ -77,7 +88,7 @@ pattern: "{{ .QuestionNumber }}.{{ .QuestionName }}"
 |-- 2.add-two-numbers.java
 ```
 
-#### Organized by Questions
+### Organized by Questions
 
 ```yaml
 language: ["*"]
@@ -94,7 +105,7 @@ pattern: "{{ .QuestionNumber }}.{{ .QuestionName }}/solution"
 |   |-- solution.java
 ```
 
-#### Organized by Difficulties
+### Organized by Difficulties
 
 ```yaml
 language: [golang, cpp]
@@ -110,7 +121,7 @@ pattern: "{{ .Difficulty }}/{{ .QuestionName }}"
 |   |-- add-two-numbers.go
 ```
 
-#### Organized by Languages
+### Organized by Languages
 
 ```yaml
 language: [golang, java]
@@ -124,6 +135,53 @@ pattern: "{{ .Language }}/{{ .QuestionName }}-{{ .Difficulty }}"
 |   |-- add-two-numbers-medium.go
 |-- java
 |   |-- add-two-numbers-medium.java
+```
+
+### GitHub Actions
+You can add the following GitHub Actions Workflows to your Leetcode submissions repository under `.github/workflows`.
+
+```yaml
+name: leetdoad
+on: 
+  # Trigger the workflow to update Leetcode submission every month.
+  schedule:
+    - cron: "0 0 1 * *"
+  workflow_dispatch:
+  # Trigger the workflow to update Leetcode submission on every push.
+  push:
+    branches:
+      - main
+jobs:
+  leetdoad-scraping:
+    runs-on: ubuntu-latest
+    steps:
+      # Install go in the workflow.
+      - name: set up go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16.1
+      # Install the latest version of leetdoad.
+      - name: install leetdoad
+        run: go install github.com/jiachengxu/leetdoad@latest
+      # Checkout to the current project root.
+      - name: checkout repo
+        uses: actions/checkout@v2
+      # Run leetdoad command in leetcode folder.
+      - name: leetdoad scraping
+        run: leetdoad
+        # If you want save your submissions in a subfolder of your repo, using the `working-directory` to specify relative path, otherwise remove the following line.
+        working-directory: <SUB_PATH>
+        env: 
+          # The Cookie needs to be added in Settings -> Secrets of your repo.
+          LEETCODE_COOKIE: ${{ secrets.LEETCODE_COOKIE }}
+      # Commit the change.
+      - name: commit change
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update leetcode solutions by leetdoad.
+          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          # Use your email address as Author.
+          commit_author: Author Name <author@email.address>
 ```
 
 ## Limitations
