@@ -185,6 +185,6 @@ jobs:
 ```
 
 ## Limitations
-Leetdoad scrapes submissions relatively slow. In my case, it always takes around 20 minutes to downland submissions of my ~400 solved questions. The bottleneck is not about the implementation of Leetdoad, and it is because the Leetcode API has rate-limiting configured.
+Leetdoad scrapes submissions relatively slow. In my case, it always takes around 20 minutes to download submissions of my ~400 solved questions. The bottleneck is not about the implementation of Leetdoad, and it is because the Leetcode API has rate-limiting configured.
 
 
