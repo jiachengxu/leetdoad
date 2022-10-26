@@ -21,6 +21,12 @@ func (s Submission) WriteTo(fileName string) error {
 		return err
 	}
 	defer f.Close()
+	if s.Language == "golang" {
+		_, err = f.WriteString("package main\n")
+		if err != nil {
+			return err
+		}
+	}
 	_, err = f.WriteString(s.Code)
 	if err != nil {
 		return err
