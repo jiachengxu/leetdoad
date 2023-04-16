@@ -17,6 +17,7 @@ var languageMap = map[string]string{
 	"golang":     "go",
 	"java":       "java",
 	"javascript": "js",
+	"typescript": "ts",
 	"python":     "py",
 	"python3":    "py",
 	"rust":       "rs",
