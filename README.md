@@ -45,7 +45,7 @@ Leetdoad also requires a configuration file in YAML to organize your Leetcode su
 
 ```yaml
 # Languages defines the submissions you would like to download are written in which programming languages.
-# Currently, supported values are: bash, c, cpp, golang, java, javascript, python, python3, rust, ruby, scala, swift.
+# Currently, supported values are: bash, c, cpp, golang, java, javascript, python, python3, rust, ruby, scala, swift, typescript.
 # Also, it supports a special value "*", which means all above programming languages.
 languages: [golang, java, cpp, python3]
 # Pattern is the naming pattern for your submission file path. It has to be compatible with go template.
