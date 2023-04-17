@@ -84,7 +84,7 @@ func (s *scraper) Scrape() error {
 			}
 			fileName := fmt.Sprintf("%s/%s.%s", pwd, buf.String(), s.config.LanguageMap[sub.Language])
 			buf.Reset()
-			if err := sub.WriteTo(fileName); err != nil {
+			if err := sub.WriteTo(fileName, q); err != nil {
 				return err
 			}
 			log.Debug().
