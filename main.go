@@ -41,7 +41,7 @@ func main() {
 	f := flags{}
 	flag.StringVar(&f.configFilePath, "config-file", ".leetdoad.yaml", "Path of the leetdoad config file")
 	flag.StringVar(&f.cookie, "cookie", "", "Cookie that used for scraping problems and solutions from Leetcode website, you can either pass it from here, or set LEETCODE_COOKIE env")
-	flag.BoolVar(&f.debug, "debug", true, "Debug logs")
+	flag.BoolVar(&f.debug, "debug", false, "Debug logs")
 	flag.BoolVar(&f.version, "version", false, "Show the current leetdoad version")
 	flag.BoolVar(&f.header, "header", false, "Add LeetCode VSCode extension header")
 	flag.Parse()
