@@ -19,7 +19,6 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: '1.19'
-      - run: echo "GOVERSION=$(go version)" >> $GITHUB_ENV
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v4
         with:
@@ -28,3 +27,4 @@ jobs:
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.G_TOKEN }}
+          GOVERSION: v1.19
