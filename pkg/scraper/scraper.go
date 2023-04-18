@@ -31,14 +31,16 @@ type filePattern struct {
 }
 
 type scraper struct {
-	client http.Client
-	config *config.InConfig
+	client        http.Client
+	config        *config.InConfig
+	includeHeader bool
 }
 
-func NewScraper(client http.Client, config *config.InConfig) *scraper {
+func NewScraper(client http.Client, config *config.InConfig, includeHeader bool) *scraper {
 	return &scraper{
-		client: client,
-		config: config,
+		client:        client,
+		config:        config,
+		includeHeader: includeHeader,
 	}
 }
 
@@ -84,7 +86,7 @@ func (s *scraper) Scrape() error {
 			}
 			fileName := fmt.Sprintf("%s/%s.%s", pwd, buf.String(), s.config.LanguageMap[sub.Language])
 			buf.Reset()
-			if err := sub.WriteTo(fileName); err != nil {
+			if err := sub.WriteTo(fileName, q, s.includeHeader); err != nil {
 				return err
 			}
 			log.Debug().

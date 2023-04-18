@@ -1,6 +1,7 @@
 package leetcode
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 )
@@ -12,7 +13,7 @@ type Submission struct {
 	Code      string `json:"code"`
 }
 
-func (s Submission) WriteTo(fileName string) error {
+func (s Submission) WriteTo(fileName string, q Question, includeHeader bool) error {
 	if err := os.MkdirAll(filepath.Dir(fileName), os.ModePerm); err != nil {
 		return err
 	}
@@ -27,10 +28,28 @@ func (s Submission) WriteTo(fileName string) error {
 			return err
 		}
 	}
+
+	if includeHeader {
+		f.WriteString(fmt.Sprintf(`/*
+* @lc app=leetcode id=%d lang=%s
+*
+* [%d] %s
+*/
+
+// @lc code=start
+`, q.FrontendQuestionID, s.Language, q.FrontendQuestionID, q.QuestionTitleSlug))
+	}
+
 	_, err = f.WriteString(s.Code)
 	if err != nil {
 		return err
 	}
+
+	if includeHeader {
+		f.WriteString(`
+// @lc code=end`)
+	}
+
 	return nil
 }
 

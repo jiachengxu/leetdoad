@@ -34,6 +34,8 @@ Usage of leetdoad:
     	Debug logs
   -version
     	Show the current leetdoad version
+  -header
+      Include a header and footer in the scraped submission file in the style of the [VSCode LeetCode extension](https://marketplace.visualstudio.com/items?itemName=LeetCode.vscode-leetcode).
 ```
 
 Leetdoad uses a cookie to download your latest submissions from Leetcode, and cookie can be found in your browser when you visit Leetcode website. If you don't know how to find the cookie, Google is your friend.

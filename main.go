@@ -34,6 +34,7 @@ type flags struct {
 	cookie         string
 	debug          bool
 	version        bool
+	header         bool
 }
 
 func main() {
@@ -42,7 +43,9 @@ func main() {
 	flag.StringVar(&f.cookie, "cookie", "", "Cookie that used for scraping problems and solutions from Leetcode website, you can either pass it from here, or set LEETCODE_COOKIE env")
 	flag.BoolVar(&f.debug, "debug", false, "Debug logs")
 	flag.BoolVar(&f.version, "version", false, "Show the current leetdoad version")
+	flag.BoolVar(&f.header, "header", false, "Add LeetCode VSCode extension header")
 	flag.Parse()
+
 	if f.version {
 		printVersion()
 		return
@@ -58,7 +61,7 @@ func main() {
 	client := http.Client{
 		Timeout: 5 * time.Second,
 	}
-	if err := scraper.NewScraper(client, cfg).Scrape(); err != nil {
+	if err := scraper.NewScraper(client, cfg, f.header).Scrape(); err != nil {
 		log.Fatal().Msgf("failed to scrape solutions: %s", err.Error())
 	}
 }
