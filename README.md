@@ -27,15 +27,15 @@ You can check the available flags by:
 $ leetdoad -h
 Usage of leetdoad:
   -config-file string
-    	Path of the leetdoad config file (default ".leetdoad.yaml")
+        Path of the leetdoad config file (default ".leetdoad.yaml")
   -cookie string
-    	Cookie that used for scraping problems and solutions from Leetcode website, you can either pass it from here, or set LEETCODE_COOKIE env
+        Cookie that used for scraping problems and solutions from Leetcode website, you can either pass it from here, or set LEETCODE_COOKIE env
   -debug
-    	Debug logs
+        Debug logs
   -version
-    	Show the current leetdoad version
+        Show the current leetdoad version
   -header
-      Include a header and footer in the scraped submission file in the style of the [VSCode LeetCode extension](https://marketplace.visualstudio.com/items?itemName=LeetCode.vscode-leetcode).
+        Include a header and footer in the scraped submission file in the style of the [VSCode LeetCode extension](https://marketplace.visualstudio.com/items?itemName=LeetCode.vscode-leetcode).
 ```
 
 Leetdoad uses a cookie to download your latest submissions from Leetcode, and cookie can be found in your browser when you visit Leetcode website. If you don't know how to find the cookie, Google is your friend.
